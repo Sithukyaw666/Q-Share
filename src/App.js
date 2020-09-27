@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
+import "firebase/analytics";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import SignIn from "./components/signin";
+import SignOut from "./components/signout";
+import Posts from "./components/posts";
+
+import style from "./style/App.module.css";
+firebase.initializeApp({
+  apiKey: "AIzaSyAYN0TleCAPyGy3Xu2JzmgyVR-RZg70GTI",
+  authDomain: "q-keep.firebaseapp.com",
+  databaseURL: "https://q-keep.firebaseio.com",
+  projectId: "q-keep",
+  storageBucket: "q-keep.appspot.com",
+  messagingSenderId: "819553208499",
+  appId: "1:819553208499:web:2256793f60c9deabf188c6",
+  measurementId: "G-WY8NTJCNGT",
+});
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+const analytics = firebase.analytics();
+
+const App = () => {
+  const [user] = useAuthState(auth);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header className={style.navbar}>
+        <h1>Q-SHARE</h1>
+        <SignOut auth={auth} style={style} />
       </header>
-    </div>
+
+      <section className={style.section}>
+        {user ? (
+          <Posts
+            useCollectionData={useCollectionData}
+            firestore={firestore}
+            auth={auth}
+            firebase={firebase}
+            style={style}
+          />
+        ) : (
+          <SignIn auth={auth} firebase={firebase} style={style} />
+        )}
+      </section>
+    </>
   );
-}
+};
 
 export default App;
