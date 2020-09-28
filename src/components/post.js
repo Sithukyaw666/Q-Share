@@ -1,7 +1,7 @@
 import React from "react";
 
-function Post({ message, auth, style }) {
-  const { text, photoURL, displayName } = message;
+function Post({ post, auth, style }) {
+  const { text, photoURL, displayName } = post;
 
   //   const postCla = uid === auth.currentUser.uid ? "sent" : "received";
 
@@ -9,17 +9,10 @@ function Post({ message, auth, style }) {
     <>
       <div className={style.post}>
         <div className={style.post_header}>
-          <img
-            className={style.userphoto}
-            alt="Profile pic"
-            src={
-              photoURL ||
-              "https://api.adorable.io/avatars/23/abott@adorable.png"
-            }
-          />
-          <p>{displayName}</p>
+          <img className={style.userphoto} alt="Profile pic" src={photoURL} />
+          <p className={style.name}>{displayName}</p>
         </div>
-        <p>{text}</p>
+        <p className={style.post_text}>{text}</p>
       </div>
     </>
   );

@@ -26,19 +26,25 @@ function Posts({ useCollectionData, firestore, firebase, auth, style }) {
     setFormValue("");
     scroll.current.scrollIntoView({ behavior: "smooth" });
   };
+  let photo = "";
+  if (auth.currentUser) {
+    const { photoURL } = auth.currentUser;
+    photo = photoURL;
+  }
 
   return (
     <>
       <main className={style.posts_container}>
         {posts &&
-          posts.map((msg) => (
-            <Post key={msg.id} message={msg} auth={auth} style={style} />
+          posts.map((post) => (
+            <Post key={post.id} post={post} auth={auth} style={style} />
           ))}
 
         <span ref={scroll}></span>
       </main>
 
       <form className={style.posts_form} onSubmit={sumbitPost}>
+        <img className={style.profile_photo} src={photo} alt="profile" />
         <input
           className={style.posts_input}
           value={formValue}
@@ -51,7 +57,7 @@ function Posts({ useCollectionData, firestore, firebase, auth, style }) {
           type="submit"
           disabled={!formValue}
         >
-          POST
+          <i class="fas fa-arrow-circle-up"></i>
         </button>
       </form>
     </>

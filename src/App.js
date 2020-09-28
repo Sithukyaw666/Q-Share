@@ -34,7 +34,7 @@ const App = () => {
   return (
     <>
       <header className={style.navbar}>
-        <h1>Q-SHARE</h1>
+        <h1 className={style.logo}>Q-SHARE</h1>
         <SignOut auth={auth} style={style} />
       </header>
 
