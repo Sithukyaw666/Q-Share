@@ -57,7 +57,7 @@ function Posts({ useCollectionData, firestore, firebase, auth, style }) {
           type="submit"
           disabled={!formValue}
         >
-          <i class="fas fa-arrow-circle-up"></i>
+          <i className="fas fa-arrow-circle-up"></i>
         </button>
       </form>
     </>

@@ -6,7 +6,7 @@ function SignOut({ auth, style }) {
     auth.currentUser && (
       <div className={style.profile_container}>
         <button className={style.signout_btn} onClick={() => auth.signOut()}>
-          <i class="fas fa-sign-out-alt"></i>
+          <i className="fas fa-sign-out-alt"></i>
         </button>
       </div>
     )
