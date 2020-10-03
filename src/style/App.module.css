@@ -10,7 +10,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #ffc93c;
+  background-color: #02204d;
   color: white;
 }
 
@@ -60,6 +60,7 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  color: #02204d;
 }
 
 @media screen and (max-width: 768px) {
@@ -72,7 +73,7 @@
 .signin_btn {
   width: 200px;
   height: 40px;
-  background-color: black;
+  background-color: #02204d;
   color: white;
   border-radius: 20px;
   border: none;
@@ -174,7 +175,7 @@
       -ms-flex-align: center;
           align-items: center;
   width: 40%;
-  height: 10%;
+  height: 60px;
 }
 
 @media screen and (max-width: 768px) {
@@ -218,6 +219,7 @@
     font-size: 35px;
     border-radius: 50%;
     border: none;
+    background-color: white;
   }
 }
 
