@@ -2,12 +2,12 @@ import React from "react";
 
 function Post({ post, auth, style }) {
   const { text, photoURL, displayName, createdAt } = post;
-
+  console.log(post);
   //   const postCla = uid === auth.currentUser.uid ? "sent" : "received";
 
-  let date = new Date(createdAt.toMillis());
+  // let date = new Date(createdAt.toMillis());
 
-  let postDate = date.toLocaleString();
+  // let postDate = date.toLocaleString();
 
   return (
     <>
@@ -23,7 +23,7 @@ function Post({ post, auth, style }) {
           />
           <div>
             <p className={style.name}>{displayName}</p>
-            <p className={style.post_date}>{postDate}</p>
+            {/* <p className={style.post_date}>{postDate}</p> */}
           </div>
         </div>
         <p className={style.post_text}>{text}</p>
