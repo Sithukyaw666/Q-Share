@@ -4,6 +4,7 @@ import Post from "./post";
 function Posts({ useCollectionData, firestore, firebase, auth, style }) {
   const scroll = useRef();
   const postRef = firestore.collection("posts");
+
   const query = postRef.orderBy("createdAt").limit(25);
 
   const [posts] = useCollectionData(query, { idField: "id" });
@@ -21,11 +22,13 @@ function Posts({ useCollectionData, firestore, firebase, auth, style }) {
       uid,
       photoURL,
       displayName,
+      date: Date.now(),
     });
 
     setFormValue("");
     scroll.current.scrollIntoView({ behavior: "smooth" });
   };
+
   let photo = "";
   if (auth.currentUser) {
     const { photoURL } = auth.currentUser;
