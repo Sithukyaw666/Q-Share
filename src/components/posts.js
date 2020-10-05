@@ -94,6 +94,7 @@ function Posts({
             className={style.posts_input}
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
+            placeholder="Share your thoughts"
           />
         </form>
       </div>
