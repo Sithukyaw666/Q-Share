@@ -1,8 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import Post from "./post";
-function Posts({ useCollectionData, firestore, firebase, auth, style }) {
-  const scroll = useRef();
+function Posts({
+  useCollectionData,
+  firestore,
+  firebase,
+  auth,
+  style,
+  sidebaractive,
+}) {
   const postRef = firestore.collection("posts");
 
   const query = postRef.orderBy("createdAt").limit(25);
@@ -10,6 +16,8 @@ function Posts({ useCollectionData, firestore, firebase, auth, style }) {
   const [posts] = useCollectionData(query, { idField: "id" });
 
   const [formValue, setFormValue] = useState("");
+
+  const [toggle, setToggle] = useState({ active: false });
 
   const sumbitPost = async (e) => {
     e.preventDefault();
@@ -26,43 +34,69 @@ function Posts({ useCollectionData, firestore, firebase, auth, style }) {
     });
 
     setFormValue("");
-    scroll.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  let photo = "";
-  if (auth.currentUser) {
-    const { photoURL } = auth.currentUser;
-    photo = photoURL;
-  }
+  const popUp = () => {
+    const currentState = toggle.active;
+
+    setToggle({ active: !currentState });
+  };
 
   return (
     <>
+      <div
+        className={`${style.sidebar_normal} ${
+          sidebaractive.active ? style.sidebar_active : ""
+        }`}
+      >
+        <img
+          className={style.user_photo}
+          src={auth.currentUser ? auth.currentUser.photoURL : ""}
+          alt="profile"
+        />
+        <p className={style.username}>
+          {auth.currentUser ? auth.currentUser.displayName : ""}
+        </p>
+        <button className={style.signout_btn} onClick={() => auth.signOut()}>
+          signout
+        </button>
+      </div>
       <main className={style.posts_container}>
         {posts &&
-          posts.map((post) => (
-            <Post key={post.id} post={post} auth={auth} style={style} />
-          ))}
-
-        <span ref={scroll}></span>
+          posts.map((post) => <Post key={post.id} post={post} style={style} />)}
       </main>
+      <button
+        onClick={popUp}
+        className={style.popup_btn}
+        style={{ display: `${toggle.active ? "none" : "block"}` }}
+      >
+        share your thoughts
+      </button>
 
-      <form className={style.posts_form} onSubmit={sumbitPost}>
-        <img className={style.profile_photo} src={photo} alt="profile" />
-        <input
-          className={style.posts_input}
-          value={formValue}
-          onChange={(e) => setFormValue(e.target.value)}
-          placeholder="share your thoughts"
-        />
-
-        <button
-          className={style.posts_button}
-          type="submit"
-          disabled={!formValue}
-        >
-          <i className="fas fa-arrow-circle-up"></i>
+      <div
+        className={`${style.form_container} ${
+          toggle.active ? style.active : ""
+        }`}
+      >
+        <button onClick={popUp} className={style.close_btn}>
+          <i className="fas fa-caret-down"></i>
         </button>
-      </form>
+        <form className={style.posts_form} onSubmit={sumbitPost}>
+          {/* <img className={style.profile_photo} src={photo} alt="profile" /> */}
+          <button
+            className={style.posts_button}
+            type="submit"
+            disabled={!formValue}
+          >
+            post
+          </button>
+          <textarea
+            className={style.posts_input}
+            value={formValue}
+            onChange={(e) => setFormValue(e.target.value)}
+          />
+        </form>
+      </div>
     </>
   );
 }

@@ -1,9 +1,7 @@
 import React from "react";
 
-function Post({ post, auth, style }) {
+function Post({ post, style }) {
   const { text, photoURL, displayName, date } = post;
-
-  //   const postCla = uid === auth.currentUser.uid ? "sent" : "received";
 
   let dateObj = new Date(date);
 

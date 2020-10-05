@@ -10,8 +10,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #02204d;
-  color: white;
+  background-color: white;
 }
 
 @media screen and (max-width: 768px) {
@@ -24,16 +23,7 @@
   width: 100%;
   height: 90vh;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  overflow: hidden;
 }
 
 .signin_container {
@@ -98,19 +88,17 @@
   height: 40px;
   border-radius: 20px;
   outline: none;
-  border: none;
-  border: 2px solid white;
+  border: 2px solid black;
   background-color: transparent;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  color: white;
 }
 
 @media screen and (max-width: 768px) {
   .signout_btn {
-    font-size: 22px;
-    width: 35px;
+    font-size: 17px;
+    width: 100px;
     height: 35px;
   }
 }
@@ -131,6 +119,54 @@
   .profile_container {
     width: 80px;
   }
+}
+
+.sidebar_normal {
+  width: 100%;
+  height: 105%;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.user_photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .user_photo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.username {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sidebar_active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 
 .profile_photo {
@@ -160,43 +196,108 @@
 @media screen and (max-width: 768px) {
   .posts_container {
     width: 100%;
-    height: 85%;
+    height: 90%;
   }
 }
 
-.posts_form {
+.popup_btn {
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  top: 97%;
+  -webkit-transform: translate(-50%, -95%);
+          transform: translate(-50%, -95%);
+  height: 40px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #000000;
+  color: white;
+}
+
+.close_btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  font-size: 40px;
+  color: #000000;
+}
+
+.form_container {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 40%;
+  height: 80%;
+  padding-top: 20px;
+  background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 40%;
-  height: 60px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  -webkit-box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 768px) {
-  .posts_form {
+  .form_container {
     width: 100%;
   }
 }
 
+.active {
+  -webkit-transform: translateY(-99%);
+          transform: translateY(-99%);
+}
+
+.posts_form {
+  width: 90%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
 .posts_input {
-  width: 400px;
-  height: 50px;
-  padding-left: 20px;
+  width: 100%;
+  height: 100px;
+  padding: 20px 10px 0px 20px;
   border-radius: 20px;
   outline: none;
-  border: 1px solid black;
+  border: 2px solid black;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media screen and (max-width: 768px) {
   .posts_input {
-    width: 70%;
-    height: 40px;
+    width: 100%;
+    height: 400px;
   }
 }
 
@@ -204,7 +305,7 @@
   width: 50px;
   height: 50px;
   border-radius: 10px;
-  border: none;
+  border: 2px solid #000000;
   cursor: pointer;
   font-size: 15px;
   border: 2px solid black;
@@ -214,12 +315,13 @@
 
 @media screen and (max-width: 768px) {
   .posts_button {
-    width: 40px;
+    right: 0;
+    width: 60px;
     height: 40px;
-    font-size: 35px;
-    border-radius: 50%;
-    border: none;
+    font-size: 17px;
+    border: 2px solid black;
     background-color: white;
+    margin-bottom: 20px;
   }
 }
 

@@ -11,8 +11,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #02204d;
-    color: white;
+    background-color: white;
+    // color: white;
 
 }
 
@@ -27,9 +27,9 @@
     width: 100%;
     height: 90vh;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+
+    overflow: hidden;
 
 }
 
@@ -85,17 +85,17 @@
     height: 40px;
     border-radius: 20px;
     outline: none;
-    border: none;
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid black;
+
     background-color: transparent;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    color: white;
+
 
     @include phone() {
-        font-size: 22px;
-        width: 35px;
+        font-size: 17px;
+        width: 100px;
         height: 35px;
 
     }
@@ -114,6 +114,47 @@
         width: 80px;
     }
 }
+
+.sidebar_normal {
+    width: 100%;
+    height: 105%;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    transform: translateX(100%);
+    transition: .3s ease-in-out;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.user_photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    @include phone() {
+        width: 100px;
+        height: 100px;
+
+
+    }
+}
+
+.username {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sidebar_active {
+    transform: translateX(0);
+}
+
+
+
+
 
 .profile_photo {
     width: 40px;
@@ -141,47 +182,108 @@
 
     @include phone() {
         width: 100%;
-        height: 85%;
+        height: 90%;
         // transform: translateY(90px);
     }
 
 }
 
-.posts_form {
+.popup_btn {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 97%;
+    transform: translate(-50%, -95%);
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #000000;
+    color: white;
+}
+
+.close_btn {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    font-size: 40px;
+    color: #000000;
+}
+
+.form_container {
 
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     width: 40%;
-    height: 60px;
+    height: 80%;
+    padding-top: 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+    transform: translateY(100%);
+    transition: .3s ease-in-out;
+    box-shadow: -5px -5px 10px rgba($color: #000000, $alpha: .2);
+
+
 
     @include phone() {
 
 
         width: 100%;
+
     }
 }
 
+.active {
+
+    transform: translateY(-99%);
+
+
+}
+
+.posts_form {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-direction: column;
+
+    position: relative;
+}
+
 .posts_input {
-    width: 400px;
-    height: 50px;
-    padding-left: 20px;
+
+    width: 100%;
+    height: 100px;
+    padding: 20px 10px 0px 20px;
     border-radius: 20px;
     outline: none;
-    border: 1px solid black;
+    border: 2px solid black;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+
 
     @include phone() {
-        width: 70%;
-        height: 40px;
+        width: 100%;
+        height: 400px;
     }
 }
 
 .posts_button {
+
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    border: none;
+    border: 2px solid #000000;
     cursor: pointer;
 
     font-size: 15px;
@@ -190,13 +292,14 @@
     outline: none;
 
     @include phone() {
-
-        width: 40px;
+        right: 0;
+        width: 60px;
         height: 40px;
-        font-size: 35px;
-        border-radius: 50%;
-        border: none;
+        font-size: 17px;
+
+        border: 2px solid black;
         background-color: white;
+        margin-bottom: 20px;
     }
 }
 

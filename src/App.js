@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import SignIn from "./components/signin";
-import SignOut from "./components/signout";
+import Profile from "./components/profile";
 import Posts from "./components/posts";
 
 import style from "./style/App.module.css";
@@ -30,12 +30,21 @@ const analytics = firebase.analytics();
 
 const App = () => {
   const [user] = useAuthState(auth);
+  const [sidebaractive, setsidebar] = useState({
+    active: false,
+  });
 
   return (
     <>
       <header className={style.navbar}>
         <h1 className={style.logo}>Q-SHARE</h1>
-        <SignOut auth={auth} style={style} />
+
+        <Profile
+          auth={auth}
+          style={style}
+          sidebaractive={sidebaractive}
+          setsidebar={setsidebar}
+        />
       </header>
 
       <section className={style.section}>
@@ -46,6 +55,7 @@ const App = () => {
             auth={auth}
             firebase={firebase}
             style={style}
+            sidebaractive={sidebaractive}
           />
         ) : (
           <SignIn auth={auth} firebase={firebase} style={style} />
