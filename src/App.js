@@ -33,18 +33,16 @@ const App = () => {
   const [sidebaractive, setsidebar] = useState({
     active: false,
   });
-
+  const sidebar = () => {
+    const currentState = sidebaractive.active;
+    setsidebar({ active: !currentState });
+  };
   return (
     <>
       <header className={style.navbar}>
         <h1 className={style.logo}>Q-SHARE</h1>
 
-        <Profile
-          auth={auth}
-          style={style}
-          sidebaractive={sidebaractive}
-          setsidebar={setsidebar}
-        />
+        <Profile auth={auth} style={style} sidebar={sidebar} />
       </header>
 
       <section className={style.section}>

@@ -31,6 +31,7 @@ function Posts({
       photoURL,
       displayName,
       date: Date.now(),
+      votedUser: [],
     });
 
     setFormValue("");
@@ -63,7 +64,15 @@ function Posts({
       </div>
       <main className={style.posts_container}>
         {posts &&
-          posts.map((post) => <Post key={post.id} post={post} style={style} />)}
+          posts.map((post) => (
+            <Post
+              key={post.id}
+              post={post}
+              style={style}
+              auth={auth}
+              postRef={postRef}
+            />
+          ))}
       </main>
       <button
         onClick={popUp}
@@ -84,11 +93,12 @@ function Posts({
         <form className={style.posts_form} onSubmit={sumbitPost}>
           {/* <img className={style.profile_photo} src={photo} alt="profile" /> */}
           <button
+            onClick={popUp}
             className={style.posts_button}
             type="submit"
             disabled={!formValue}
           >
-            post
+            <i className="fas fa-location-arrow"></i>
           </button>
           <textarea
             className={style.posts_input}

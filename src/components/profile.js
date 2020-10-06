@@ -1,10 +1,6 @@
 import React from "react";
 
-function Profile({ auth, style, sidebaractive, setsidebar }) {
-  const sidebar = () => {
-    const currentState = sidebaractive.active;
-    setsidebar({ active: !currentState });
-  };
+function Profile({ auth, style, sidebar }) {
   const photo = auth.currentUser ? auth.currentUser.photoURL : "";
   return (
     // && do the display
@@ -16,10 +12,6 @@ function Profile({ auth, style, sidebaractive, setsidebar }) {
           alt="profile"
           onClick={sidebar}
         />
-
-        {/* <button className={style.signout_btn} onClick={() => auth.signOut()}>
-          <i className="fas fa-sign-out-alt"></i>
-        </button> */}
       </div>
     )
   );
