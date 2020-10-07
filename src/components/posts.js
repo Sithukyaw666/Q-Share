@@ -11,7 +11,7 @@ function Posts({
 }) {
   const postRef = firestore.collection("posts");
 
-  const query = postRef.orderBy("createdAt").limit(25);
+  const query = postRef.orderBy("createdAt", "desc").limit(25);
 
   const [posts] = useCollectionData(query, { idField: "id" });
 

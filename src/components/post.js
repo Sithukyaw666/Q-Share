@@ -13,7 +13,8 @@ function Post({ post, style, auth, postRef }) {
   const onVote = () => {
     setvoteduser((preVote) => [...preVote, auth.currentUser.uid]);
   };
-  if (voteduser.length !== 0) {
+  if (voteduser.length > votedUser.length) {
+    console.log("ok");
     postRef.doc(id).update({
       votedUser: voteduser,
     });
