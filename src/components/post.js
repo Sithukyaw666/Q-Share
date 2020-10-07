@@ -55,7 +55,7 @@ function Post({ post, style, auth, postRef }) {
             ></i>
           </button>
           <p className={style.vote_count}>
-            {votedUser.length === 0 ? "" : votedUser.length} votes
+            {votedUser.length === 0 ? "" : votedUser.length}
           </p>
         </div>
       </div>
