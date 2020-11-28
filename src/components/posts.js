@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { WaveLoading } from "react-loadingg";
+import { Offline, Online } from "react-detect-offline";
 import Post from "./post";
 function Posts({
   useCollectionData,
@@ -63,7 +64,12 @@ function Posts({
         </button>
       </div>
       <main className={style.posts_container}>
-        {posts &&
+        <Offline>
+          <div className={style.offline_alert}>
+            <p>Please connect your network</p>
+          </div>
+        </Offline>
+        {posts ? (
           posts.map((post) => (
             <Post
               key={post.id}
@@ -72,7 +78,10 @@ function Posts({
               auth={auth}
               postRef={postRef}
             />
-          ))}
+          ))
+        ) : (
+          <WaveLoading color="#2c64ff" />
+        )}
       </main>
       <button
         onClick={popUp}

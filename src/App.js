@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import style from "./style/App.module.css";
+
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -7,12 +9,12 @@ import "firebase/analytics";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import logo from "./img/logo.svg";
 
-import SignIn from "./components/signin";
-import Profile from "./components/profile";
-import Posts from "./components/posts";
+const SignIn = React.lazy(() => import("./components/signin"));
+const Profile = React.lazy(() => import("./components/profile"));
+const Posts = React.lazy(() => import("./components//posts"));
 
-import style from "./style/App.module.css";
 firebase.initializeApp({
   apiKey: "AIzaSyAYN0TleCAPyGy3Xu2JzmgyVR-RZg70GTI",
   authDomain: "q-keep.firebaseapp.com",
@@ -40,7 +42,7 @@ const App = () => {
   return (
     <>
       <header className={style.navbar}>
-        <h1 className={style.logo}>Q-SHARE</h1>
+        <img className={style.logo} src={logo} alt="Logo" />
 
         <Profile auth={auth} style={style} sidebar={sidebar} />
       </header>
