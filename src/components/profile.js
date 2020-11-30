@@ -1,6 +1,6 @@
 import React from "react";
 
-function Profile({ auth, style, sidebar, darkmode }) {
+function Profile({ auth, style, sidebar }) {
   const photo = auth.currentUser ? auth.currentUser.photoURL : "";
   return (
     // && do the display
@@ -11,9 +11,6 @@ function Profile({ auth, style, sidebar, darkmode }) {
           className={style.profile_photo}
           alt="profile"
           onClick={sidebar}
-          style={{
-            border: `${darkmode ? "2px solid white" : ""}`,
-          }}
         />
       </div>
     )

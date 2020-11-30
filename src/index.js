@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { BoxLoading } from "react-loadingg";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -8,7 +9,7 @@ ReactDOM.render(
   <Suspense
     fallback={
       <div className="loader">
-        <p className="loading">Loading....</p>
+        <BoxLoading color="#2c64ff" size="large" />
       </div>
     }
   >

@@ -54,7 +54,7 @@ const App = () => {
     <>
       <header
         className={style.navbar}
-        style={{ backgroundColor: `${darkmode ? "#030623" : ""}` }}
+        style={{ backgroundColor: `${darkmode ? "#0D0E18" : ""}` }}
       >
         <img className={style.logo} src={logo} alt="Logo" />
 
