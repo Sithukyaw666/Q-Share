@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Post({ post, style, auth, postRef }) {
+function Post({ post, style, auth, postRef, darkmode }) {
   const { text, photoURL, displayName, date, id, votedUser } = post;
 
   let dateObj = new Date(date);
@@ -25,7 +25,13 @@ function Post({ post, style, auth, postRef }) {
 
   return (
     <>
-      <div className={style.post}>
+      <div
+        className={style.post}
+        style={{
+          backgroundColor: `${darkmode ? "rgba(35, 37, 70, 0.342)" : ""}`,
+          color: `${darkmode ? "white" : ""}`,
+        }}
+      >
         <div className={style.post_header}>
           <img
             className={style.userphoto}
@@ -54,7 +60,10 @@ function Post({ post, style, auth, postRef }) {
               } fa-arrow-alt-circle-up`}
             ></i>
           </button>
-          <p className={style.vote_count}>
+          <p
+            className={style.vote_count}
+            style={{ color: `${darkmode ? "rgb(209, 208, 208)" : ""}` }}
+          >
             {votedUser.length === 0 ? "" : votedUser.length}
           </p>
         </div>

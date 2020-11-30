@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { WaveLoading } from "react-loadingg";
+import { BoxLoading } from "react-loadingg";
 import { Offline, Online } from "react-detect-offline";
+
 import Post from "./post";
 function Posts({
   useCollectionData,
@@ -9,6 +10,8 @@ function Posts({
   auth,
   style,
   sidebaractive,
+  darkmode,
+  setdarkmode,
 }) {
   const postRef = firestore.collection("posts");
 
@@ -50,25 +53,46 @@ function Posts({
         className={`${style.sidebar_normal} ${
           sidebaractive.active ? style.sidebar_active : ""
         }`}
+        style={{
+          backgroundColor: `${darkmode ? "#0D0E18" : ""}`,
+          color: `${darkmode ? "white" : ""}`,
+        }}
       >
-        <img
-          className={style.user_photo}
-          src={auth.currentUser ? auth.currentUser.photoURL : ""}
-          alt="profile"
-        />
-        <p className={style.username}>
-          {auth.currentUser ? auth.currentUser.displayName : ""}
-        </p>
-        <button className={style.signout_btn} onClick={() => auth.signOut()}>
-          signout
-        </button>
+        <div className={style.profile_info}>
+          <img
+            className={style.user_photo}
+            style={{
+              border: `${darkmode ? "2px solid white" : ""}`,
+            }}
+            src={auth.currentUser ? auth.currentUser.photoURL : ""}
+            alt="profile"
+          />
+          <p className={style.username}>
+            {auth.currentUser ? auth.currentUser.displayName : ""}
+          </p>
+        </div>
+        <div className={style.option}>
+          <button
+            className={style.signout_btn}
+            style={{
+              border: `${darkmode ? "2px solid white" : ""}`,
+              color: `${darkmode ? "white" : ""}`,
+            }}
+            onClick={() => auth.signOut()}
+          >
+            signout
+          </button>
+          <button
+            className={style.darkmode_toggle}
+            onClick={() => setdarkmode(!darkmode)}
+            style={{ color: `${darkmode ? "white" : ""}` }}
+          >
+            <i className={`fas ${darkmode ? "fa-moon" : "fa-sun"}`}></i>
+          </button>
+        </div>
       </div>
+
       <main className={style.posts_container}>
-        <Offline>
-          <div className={style.offline_alert}>
-            <p>Please connect your network</p>
-          </div>
-        </Offline>
         {posts ? (
           posts.map((post) => (
             <Post
@@ -77,24 +101,36 @@ function Posts({
               style={style}
               auth={auth}
               postRef={postRef}
+              darkmode={darkmode}
             />
           ))
         ) : (
-          <WaveLoading color="#2c64ff" />
+          <BoxLoading color="#2c64ff" size="large" />
         )}
       </main>
-      <button
-        onClick={popUp}
-        className={style.popup_btn}
-        style={{ display: `${toggle.active ? "none" : "block"}` }}
-      >
-        share your thoughts
-      </button>
+      <Online>
+        <button
+          onClick={popUp}
+          className={style.popup_btn}
+          style={{ display: `${toggle.active ? "none" : "block"}` }}
+        >
+          Share Your Thoughts
+        </button>
+      </Online>
+      <Offline>
+        <div className={style.offline_alert}>
+          <p>No Network Connection</p>
+        </div>
+      </Offline>
 
       <div
         className={`${style.form_container} ${
           toggle.active ? style.active : ""
         }`}
+        style={{
+          backgroundColor: `${darkmode ? "#0D0E18" : ""}`,
+          color: `${darkmode ? "white" : ""}`,
+        }}
       >
         <button onClick={popUp} className={style.close_btn}>
           <i className="fas fa-caret-down"></i>
@@ -107,10 +143,14 @@ function Posts({
             type="submit"
             disabled={!formValue}
           >
-            <i className="fas fa-location-arrow"></i>
+            <i className={`${formValue ? "fas" : "far"} fa-location-arrow`}></i>
           </button>
           <textarea
             className={style.posts_input}
+            style={{
+              backgroundColor: `${darkmode ? "#222222" : ""}`,
+              color: `${darkmode ? "white" : ""}`,
+            }}
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
             placeholder="Share your thoughts"

@@ -6,7 +6,7 @@
 
 .navbar {
   width: 100%;
-  height: 9vh;
+  height: 10vh;
   padding: 0, 60px;
   display: flex;
   justify-content: space-around;
@@ -28,21 +28,24 @@
 
 .section {
   width: 100%;
-  height: 90vh;
+  height: 92vh;
   position: relative;
 
   overflow: hidden;
 }
 .offline_alert {
   width: 90%;
-  height: 40px;
-  background-color: rgb(250, 93, 93);
+  height: 30px;
+  background-color: #691e1e;
   margin: auto;
-  padding: 8px 10px 10px 10px;
+  padding: 2px 10px 10px 10px;
+  z-index: 1;
+  transform: translateY(20px);
+  border-radius: 20px;
   p {
     text-justify: auto;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: rgb(238, 231, 231);
   }
 }
 
@@ -129,30 +132,18 @@
 
 .sidebar_normal {
   width: 100%;
+  top: -20px;
   height: 105%;
+
   position: absolute;
   background-color: white;
   z-index: 1;
   transform: translateX(100%);
   transition: 0.3s ease-in-out;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
-}
-.lds-facebook {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-facebook div {
-  display: inline-block;
-  position: absolute;
-  left: 8px;
-  width: 16px;
-  background: rgb(61, 0, 0);
-  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
 .user_photo {
@@ -161,6 +152,8 @@
   border-radius: 50%;
 
   @include phone() {
+    position: absolute;
+    top: -50px;
     width: 100px;
     height: 100px;
   }
@@ -169,6 +162,8 @@
 .username {
   font-size: 20px;
   font-weight: bold;
+  position: absolute;
+  top: 60%;
 }
 
 .sidebar_active {
@@ -179,10 +174,11 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 2px solid white;
 
   @include phone() {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
   }
 }
 
@@ -190,22 +186,39 @@
   flex: 1;
   width: 80%;
   margin: auto;
-  height: 80%;
+  height: 90%;
   position: relative;
   overflow: auto;
 
   @include phone() {
     width: 100%;
-    height: 90%;
+    height: 88%;
     // transform: translateY(90px);
   }
 }
-
+.darkmode_toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+.option {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 30%;
+}
 .popup_btn {
   position: absolute;
   width: 90%;
   left: 50%;
-  top: 97%;
+  top: 96%;
   transform: translate(-50%, -95%);
   height: 40px;
   border-radius: 20px;
@@ -214,8 +227,20 @@
   -webkit-tap-highlight-color: transparent;
   background-color: #2c64ff;
   color: white;
+  font-family: "Poppins", sans-serif;
 }
 
+.profile_info {
+  position: relative;
+  width: 95%;
+  height: 20%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0px;
+}
 .close_btn {
   width: 40px;
   height: 40px;
@@ -348,10 +373,10 @@
 }
 
 .vote_count {
-  color: rgb(97, 97, 97);
+  color: rgb(66, 66, 66);
   margin-left: 5px;
   flex: 1;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .voted {
