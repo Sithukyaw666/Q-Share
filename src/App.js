@@ -17,14 +17,14 @@ const Profile = React.lazy(() => import("./components/profile"));
 const Posts = React.lazy(() => import("./components//posts"));
 
 firebase.initializeApp({
-  apiKey: "AIzaSyAYN0TleCAPyGy3Xu2JzmgyVR-RZg70GTI",
-  authDomain: "q-keep.firebaseapp.com",
-  databaseURL: "https://q-keep.firebaseio.com",
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  databaseURL: process.env.DATABASEURL,
   projectId: "q-keep",
-  storageBucket: "q-keep.appspot.com",
-  messagingSenderId: "819553208499",
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
   appId: "1:819553208499:web:2256793f60c9deabf188c6",
-  measurementId: "G-WY8NTJCNGT",
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 });
 
 const auth = firebase.auth();
